@@ -65,6 +65,7 @@ CM.Cache.RemakeWrinkBank = function() {
 	}
 }
 
+//Set wizzard tower.pp to infinity.
 CM.Cache.RemakeBuildingsPP = function() {
 	CM.Cache.min = -1;
 	CM.Cache.max = -1;
@@ -72,6 +73,7 @@ CM.Cache.RemakeBuildingsPP = function() {
 	for (var i in CM.Cache.Objects) {
 		//CM.Cache.Objects[i].pp = Game.Objects[i].getPrice() / CM.Cache.Objects[i].bonus;
 		CM.Cache.Objects[i].pp = (Math.max(Game.Objects[i].getPrice() - (Game.cookies + CM.Disp.GetWrinkConfigBank()), 0) / Game.cookiesPs) + (Game.Objects[i].getPrice() / CM.Cache.Objects[i].bonus);
+		if (CM.Cache.Objects[i] == Game.Objects['Wizard tower']) CM.Cache.Objects[i].pp = Infinity;
 		if (CM.Cache.min == -1 || CM.Cache.Objects[i].pp < CM.Cache.min) CM.Cache.min = CM.Cache.Objects[i].pp;
 		if (CM.Cache.max == -1 || CM.Cache.Objects[i].pp > CM.Cache.max) CM.Cache.max = CM.Cache.Objects[i].pp;
 	}
